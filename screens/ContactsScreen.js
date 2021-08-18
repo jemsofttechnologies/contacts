@@ -1,11 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import Container from "../components/Container";
 
 const ContactsScreen = () => {
 	return (
-		<View>
+		<Container>
 			<Text>Hello from contact</Text>
-		</View>
+		</Container>
 	);
 };
 

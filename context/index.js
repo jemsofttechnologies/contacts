@@ -1,28 +1,27 @@
+import React from 'react'
 import { createContext, useReducer } from "react";
+import authInitialState from "./initialStates/authInitialState";
+import contactsInitialState from "./initialStates/contactsInitialState";
+import authReducer from "./reducers/authReducer";
+import contactsReducer from "./reducers/contactsReducer";
 
-// initial state
-const initialState = {
-	user: null,
-};
 
 // create context
 const Context = createContext();
 
-// root reducer
-const rootReducer = (state, action) => {
-	switch (action.type) {
-		case "LOGIN":
-			return { ...state, user: action.payload };
-		default:
-			return state;
-	}
-};
-
 // provider
 const Provider = ({ children }) => {
-	const [state, dispatch] = useReducer(rootReducer, initialState);
+	const [authState, authDispatch] = useReducer(authReducer, authInitialState);
+	const [contactsState, contactsDispatch] = useReducer(contactsReducer, contactsInitialState);
 	return (
-		<Context.Provider value={{state, dispatch}}>
+		<Context.Provider
+			value={{
+				authState,
+				contactsState,
+				authDispatch,
+				contactsDispatch,
+			}}
+		>
 			{children}
 		</Context.Provider>
 	);
