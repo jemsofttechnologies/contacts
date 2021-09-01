@@ -1,16 +1,14 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
-import { Input } from "react-native-elements/dist/input/Input";
-import Container from "../components/Container";
+import { View } from "react-native";
+import tailwind from "tailwind-rn";
+import Login from "../components/Login";
 
 const LoginScreen = () => {
 	return (
-		<Container>
-            <Text>This is login</Text>
-		</Container>
+		<View style={tailwind(``)}>
+			<Login />
+		</View>
 	);
 };
 
 export default LoginScreen;
-
-const styles = StyleSheet.create({});
