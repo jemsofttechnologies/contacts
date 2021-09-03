@@ -13,13 +13,13 @@ const CustomInput = ({
 }) => {
 	const [focused, setFocused] = useState(false);
 	return (
-		<View style={tailwind("mb-5")}>
+		<View style={tailwind("mb-4")}>
 			{label && (
 				<Text style={tailwind("mb-1 text-base")}>{label}</Text>
 			)}
 			<View
 				style={tailwind(
-					`flex flex-row items-center justify-between h-12 border border-gray-900 text-lg rounded-md pl-2 pr-2 mb-1 ${
+					`flex flex-row items-center justify-between border border-gray-900  rounded-md pl-2 pr-2 mb-1 h-11 ${
 						iconPosition === "left" ? "flex-row-reverse" : ""
 					} ${error ? "border-red-500" : ""} ${
 						focused ? "border-blue-300" : ""
@@ -27,7 +27,7 @@ const CustomInput = ({
 				)}
 			>
 				<TextInput
-					style={[tailwind("flex-1 text-base pt-0 h-8")]}
+					style={[{fontSize:16},tailwind("flex-1")]}
 					onChangeText={onChangeText}
 					value={value}
 					onFocus={(e) => setFocused(true)}

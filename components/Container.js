@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, ScrollView, View } from "react-native";
+import { StyleSheet, ScrollView, View } from "react-native";
 import tailwind from "tailwind-rn";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";

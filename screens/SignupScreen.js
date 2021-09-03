@@ -1,10 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import Signup from "../components/Signup";
 
 const SignupScreen = () => {
 	return (
 		<View>
-			<Text>This is the signup page</Text>
+			<Signup />
 		</View>
 	);
 };
