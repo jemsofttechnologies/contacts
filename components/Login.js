@@ -7,16 +7,17 @@ import Container from "./Container";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/core";
 import { KeyboardAvoidingView } from "react-native";
-import { Header } from "react-navigation-stack";
+import { useHeaderHeight } from "@react-navigation/elements";
 
 const Login = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const { navigate } = useNavigation();
+	const headerHeight = useHeaderHeight();
 	return (
 		<Container style={tailwind("flex items-center justify-center")}>
 			<KeyboardAvoidingView
-				keyboardVerticalOffset={Header.HEIGHT + 64}
+				keyboardVerticalOffset={headerHeight + 20}
 				style={{ flex: 1 }}
 				behavior="padding"
 			>
@@ -70,7 +71,6 @@ const Login = () => {
 						</TouchableOpacity>
 					</View>
 				</View>
-				<View style={{ height: 250 }}></View>
 			</KeyboardAvoidingView>
 		</Container>
 	);
