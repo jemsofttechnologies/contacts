@@ -7,11 +7,18 @@ import Container from "./Container";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/core";
 import { KeyboardAvoidingView } from "react-native";
+import { useHeaderHeight } from "@react-navigation/elements";
 
 const Signup = () => {
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
+	const [values, setValues] = useState({
+		username: "",
+		firstName: "",
+		lastName: "",
+		email: "",
+		password: "",
+	});
 	const { navigate } = useNavigation();
+	const headerHeight = useHeaderHeight();
 	return (
 		<Container style={tailwind("flex items-center justify-center")}>
 			<Image
@@ -20,7 +27,11 @@ const Signup = () => {
 				style={tailwind(`h-48 w-56 self-center mt-4`)}
 				source={require("../assets/logo.png")}
 			/>
-			<KeyboardAvoidingView>
+			<KeyboardAvoidingView
+				keyboardVerticalOffset={headerHeight + 40}
+				style={{ flex: 1 }}
+				behavior="padding"
+			>
 				<Text
 					style={tailwind(`mb-6 self-center text-blue-400 text-2xl`)}
 				>
@@ -28,27 +39,39 @@ const Signup = () => {
 				</Text>
 				<View>
 					<CustomInput
-						label="Name"
-						onChangeText={(text) => setUsername(text)}
-						value={username}
+						name="firstName"
+						label="First Name"
+						onChangeText={(text) =>
+							setValues({ ...values, firstName: text })
+						}
+						value={values.firstName}
 					/>
 					<CustomInput
-						label="Email"
-						onChangeText={(text) => setUsername(text)}
-						value={username}
+						name="lastName"
+						label="Last Name"
+						value={values.lastName}
+						onChangeText={(text) =>
+							setValues({ ...values, lastName: text })
+						}
 					/>
 					<CustomInput
+						name="username"
 						label="Username"
-						onChangeText={(text) => setUsername(text)}
-						value={username}
+						value={values.username}
+						onChangeText={(text) =>
+							setValues({ ...values, username: text })
+						}
 					/>
 					<CustomInput
 						label="Password"
-						onChangeText={(text) => setPassword(text)}
-						value={password}
+						name="password"
+						value={values.password}
 						secureTextEntry={true}
 						icon={<Text>Show</Text>}
 						iconPosition="right"
+						onChangeText={(text) =>
+							setValues({ ...values, password: text })
+						}
 					/>
 					<CustomButton
 						title="Register"
@@ -57,7 +80,7 @@ const Signup = () => {
 						primary={true}
 					/>
 				</View>
-				<View style={tailwind(`flex-row justify-center mb-4`)}>
+				<View style={tailwind(`flex-row justify-center mt-10 mb-4`)}>
 					<Text style={tailwind(`mr-1 text-base`)}>
 						Already have an account?
 					</Text>
@@ -69,7 +92,6 @@ const Signup = () => {
 						</Text>
 					</TouchableOpacity>
 				</View>
-				<View style={{height:100}}></View>
 			</KeyboardAvoidingView>
 		</Container>
 	);
