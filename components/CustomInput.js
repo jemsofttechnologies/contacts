@@ -9,6 +9,7 @@ const CustomInput = ({
 	icon,
 	iconPosition,
 	error,
+	name,
 	...props
 }) => {
 	const [focused, setFocused] = useState(false);
@@ -27,6 +28,7 @@ const CustomInput = ({
 				)}
 			>
 				<TextInput
+					name="firstName"
 					style={[{fontSize:16},tailwind("flex-1")]}
 					onChangeText={onChangeText}
 					value={value}
