@@ -1,26 +1,25 @@
 import React, { useState } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import {
+	Image,
+	StyleSheet,
+	Text,
+	View,
+	ScrollAreaView,
+} from "react-native";
 import tailwind from "tailwind-rn";
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
 import Container from "./Container";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/core";
-import { KeyboardAvoidingView } from "react-native";
-import { useHeaderHeight } from "@react-navigation/elements";
 
 const Login = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const { navigate } = useNavigation();
-	const headerHeight = useHeaderHeight();
 	return (
 		<Container style={tailwind("flex items-center justify-center")}>
-			<KeyboardAvoidingView
-				keyboardVerticalOffset={headerHeight + 20}
-				style={{ flex: 1 }}
-				behavior="padding"
-			>
+			<View>
 				<Image
 					height={70}
 					width={70}
@@ -57,7 +56,7 @@ const Login = () => {
 						/>
 					</View>
 					<View
-						style={tailwind(`flex-row justify-center mt-32 mb-4`)}
+						style={tailwind(`flex-row justify-center mt-16 mb-20`)}
 					>
 						<Text style={tailwind(`mr-1 text-base`)}>
 							Don't have an account?
@@ -71,7 +70,7 @@ const Login = () => {
 						</TouchableOpacity>
 					</View>
 				</View>
-			</KeyboardAvoidingView>
+			</View>
 		</Container>
 	);
 };

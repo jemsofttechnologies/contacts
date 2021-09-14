@@ -6,19 +6,9 @@ import CustomButton from "./CustomButton";
 import Container from "./Container";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/core";
-import { KeyboardAvoidingView } from "react-native";
-import { useHeaderHeight } from "@react-navigation/elements";
 
-const Signup = () => {
-	const [values, setValues] = useState({
-		username: "",
-		firstName: "",
-		lastName: "",
-		email: "",
-		password: "",
-	});
+const Signup = ({ onSubmit, handleChange, values, errors }) => {
 	const { navigate } = useNavigation();
-	const headerHeight = useHeaderHeight();
 	return (
 		<Container style={tailwind("flex items-center justify-center")}>
 			<Image
@@ -27,11 +17,7 @@ const Signup = () => {
 				style={tailwind(`h-48 w-56 self-center mt-4`)}
 				source={require("../assets/logo.png")}
 			/>
-			<KeyboardAvoidingView
-				keyboardVerticalOffset={headerHeight + 40}
-				style={{ flex: 1 }}
-				behavior="padding"
-			>
+			<View>
 				<Text
 					style={tailwind(`mb-6 self-center text-blue-400 text-2xl`)}
 				>
@@ -41,36 +27,64 @@ const Signup = () => {
 					<CustomInput
 						name="firstName"
 						label="First Name"
-						onChangeText={(text) =>
-							setValues({ ...values, firstName: text })
+						onChangeText={(value) =>
+							handleChange({
+								name: "firstName",
+								value,
+							})
 						}
 						value={values.firstName}
+						error={errors.firstName}
 					/>
 					<CustomInput
 						name="lastName"
 						label="Last Name"
 						value={values.lastName}
-						onChangeText={(text) =>
-							setValues({ ...values, lastName: text })
+						error={errors.lastName}
+						onChangeText={(value) =>
+							handleChange({
+								name: "lastName",
+								value,
+							})
 						}
 					/>
 					<CustomInput
 						name="username"
 						label="Username"
 						value={values.username}
-						onChangeText={(text) =>
-							setValues({ ...values, username: text })
+						error={errors.username}
+						onChangeText={(value) =>
+							handleChange({
+								name: "username",
+								value,
+							})
+						}
+					/>
+					<CustomInput
+						name="email"
+						label="Email"
+						value={values.email}
+						error={errors.email}
+						onChangeText={(value) =>
+							handleChange({
+								name: "email",
+								value,
+							})
 						}
 					/>
 					<CustomInput
 						label="Password"
 						name="password"
 						value={values.password}
+						error={errors.password}
 						secureTextEntry={true}
 						icon={<Text>Show</Text>}
 						iconPosition="right"
-						onChangeText={(text) =>
-							setValues({ ...values, password: text })
+						onChangeText={(value) =>
+							handleChange({
+								name: "password",
+								value,
+							})
 						}
 					/>
 					<CustomButton
@@ -78,9 +92,10 @@ const Signup = () => {
 						loading={false}
 						disabled={false}
 						primary={true}
+						onPress={onSubmit}
 					/>
 				</View>
-				<View style={tailwind(`flex-row justify-center mt-10 mb-4`)}>
+				<View style={tailwind(`flex-row justify-center mt-5 mb-10`)}>
 					<Text style={tailwind(`mr-1 text-base`)}>
 						Already have an account?
 					</Text>
@@ -92,7 +107,7 @@ const Signup = () => {
 						</Text>
 					</TouchableOpacity>
 				</View>
-			</KeyboardAvoidingView>
+			</View>
 		</Container>
 	);
 };
