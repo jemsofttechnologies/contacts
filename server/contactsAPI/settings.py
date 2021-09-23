@@ -41,9 +41,10 @@ INSTALLED_APPS = [
 
     # Custom Apps
     "authentication",
+    "contacts",
 ]
-REST_FRAMEWORK={
-    'DEFAULT_AUTHENTICATION_CLASSES':(
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
         'authentication.backends.JWTAuthentication',
     )
 }
