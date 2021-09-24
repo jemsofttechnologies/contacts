@@ -37,12 +37,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "rest_framework",
 
-    # Custom Apps
+    # User Installed Apps
+    "rest_framework",
+    "corsheaders",
+    "drf_yasg",
+
+    # User Custom Apps
     "authentication",
     "contacts",
-    "drf_yasg",
 ]
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {
@@ -66,6 +69,9 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+
+    # User Middleware
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "contactsAPI.urls"
@@ -125,6 +131,11 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# CORS
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
 
 # JWT
 JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY')
